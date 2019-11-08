@@ -1,0 +1,128 @@
+.cabecera {
+    display: flex;
+    background-color: black;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+#phoenix_store {
+    color: white;
+}
+
+.logo {
+    width: 30%;
+    height: 70px;
+    float: left;
+    padding-top: 10px;
+    background-color: black;
+    display: flex;
+}
+
+.nav {
+    float: right;
+}
+
+.nav-link {
+    display: inline;
+    color: white;
+    padding-left: 30px;
+    font-size: 20px;
+}
+
+.imagen {
+    width: 1024px;
+    height: 480px;
+}
+
+#carouselExampleIndicators {
+    width: 1024px;
+    padding-top: 30px;
+}
+
+.img_ofertas {
+    width: 210px;
+    height: 200px;
+    border: solid;
+    border-color: whitesmoke;
+}
+
+#ofertas {
+    display: flex;
+    padding-top: 20px;
+    justify-content: space-around;
+}
+
+.titulo {
+    font-family: fantasy;
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    background-color: red;
+    border: solid;
+    border-color: whitesmoke;
+}
+
+#productos_destacados {
+    display: flex;
+    justify-content: center;
+    background-color: red;
+    align-items: center;
+}
+
+#destacados {
+    color: white;
+}
+
+#ofertas2 {
+    display: flex;
+    padding-top: 20px;
+    justify-content: space-around;
+}
+
+#fenix {
+    width: 55px;
+    height: 55px;
+}
+
+#text-carousel,
+#text-carousel2 {
+    color: darkslateblue;
+    font-family: fantasy;
+}
+
+#rss_img,
+#rss_img2,
+#rss_img3 {
+    width: 40px;
+    height: 40px;
+}
+
+#rss {
+    display: flex;
+    justify-content: center;
+}
+
+#texto_bot,
+#texto_bot2 {
+    font-size: 20px;
+    color: orange;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#bot_contenedor {
+    display: flex;
+    justify-content: center;
+}
+
+#derechos {
+    display: flex;
+    justify-content: center;
+    color: orange;
+}
+
+#pagina-principal {
+    color: orange;
+}

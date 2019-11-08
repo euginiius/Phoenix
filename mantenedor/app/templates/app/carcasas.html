@@ -1,0 +1,79 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="{% static 'css/boostrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fondo.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <title>Phoenix store</title>
+</head>
+
+<body class="pagina">
+    <header class="cabecera">
+        <div class="container">
+            <div class="logo">
+                <img id="fenix" src="{% static 'img/Fenix.png' %}" alt="">
+                <h2 id="phoenix_store">Phoenix store</h2>
+            </div>
+            <nav class="nav">
+                <a class="nav-link" href="carcasas.html">Carcasas</a>
+                <a class="nav-link" href="llaveros.html">Llaveros</a>
+                <a class="nav-link" href="tazones.html">Tazones</a>
+                <a class="nav-link" href="funkos.html">Funkos</a>
+                <a class="nav-link" href="peluches.html">Peluches</a>
+                <a class="nav-link" href="accesorios.html">Accesorios</a>
+                <a class="nav-link" href="ropa.html">Ropa</a>
+            </nav>
+        </div>
+    </header>
+    <div id="ofertas">
+
+        <div>
+            <img class="img_ofertas" src="{% static 'img/Carcasa-huawei-p20-pro.jpg' %}" alt="">
+            <p class="titulo"> Carcasa huawei p20 pro<br> $2.990</p>
+        </div>
+        <div>
+            <img class="img_ofertas" src="{% static 'img/Carcasa-iphone-6-plus-friends.jpg' %}" alt="">
+            <p class="titulo"> Carcasa iphone 6 <br> $3.990</p>
+        </div>
+        <div>
+            <img class="img_ofertas" src="{% static 'img/Carcasa-iphone-6-plus-riverdale.jpg' %}" alt="">
+            <p class="titulo"> Carcasa iphone 6 <br> $3.990 </p>
+
+        </div>
+    </div>
+    <br><br><br>
+    <footer id="fondo">
+        <div id="bot_contenedor">
+            <a id="texto_bot" href="contactenos.html">
+                <p>Contáctenos</p>
+            </a>
+            <a id="texto_bot2" href="entregas.html">
+                <p>Entregas</p>
+            </a>
+        </div>
+        <div id="rss">
+            <img id="rss_img" src="{% static 'img/Logo-face.png' %}" alt="">
+            <img id="rss_img2" src="{% static 'img/Logo-insta.png' %}" alt="">
+            <img id="rss_img3" src="{% static 'img/Logo-wsp.png' %}" alt="">
+        </div>
+        <div id="derechos">
+            <p>Todos los derechos reservados</p>
+        </div>
+        <a id="pagina-principal" class="row justify-content-center" href="index.html">Página principal</a>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
