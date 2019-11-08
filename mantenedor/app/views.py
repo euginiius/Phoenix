@@ -80,4 +80,4 @@ def editar_producto(request, codigo_producto):
 def borrar_producto(request, codigo_producto):
     instancia = Producto.objects.get(codigo=codigo_producto)
     instancia.delete()
-    return redirecct("/")
+    return redirect("/paginaPrincipal")

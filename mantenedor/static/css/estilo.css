@@ -126,3 +126,7 @@
 #pagina-principal {
     color: orange;
 }
+
+body {
+    background: url(../img/Fondo.jpg);
+}
