@@ -13,11 +13,11 @@
 <body>
     <h1>Listar productos</h1>
     <ul>
-        {% for c in productos %}
+        {% for p in productos %}
         <li>
             {{p.nombre}} $ {{p.precio}} , {{p.marca}} , {{p.modelo}} , {{p.descripcion}} , {{p.stock}}
-            <a href="/editarProducto/{{p.codigo}}">EDITAR</a>
-            <a href="/borrarProducto/{{p.codigo}}" onclick="return confirm('¿Seguro de borrar?');">
+            <a href="/editarProducto/{{p.id}}">EDITAR</a>
+            <a href="/borrarProducto/{{p.id}}" onclick="return confirm('¿Seguro de borrar?');">
             BORRAR</a>
         </li>
         {% endfor %}

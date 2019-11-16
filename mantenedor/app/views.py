@@ -61,12 +61,12 @@ def registrar_producto(request):
 
 
 def listar_productos(request):
-    producto = Producto.objects.all()
-    return render(request, "app/listar_productos.html", {'producto': producto})
+    productos = Producto.objects.all()
+    return render(request, "app/listar_productos.html", {'productos': productos})
 
 
 def editar_producto(request, codigo_producto):
-    instancia = Producto.objects.get(codigo=codigo_producto)
+    instancia = Producto.objects.get(id=codigo_producto)
     form = ProductoForm(instance=instancia)
 
     if request.method == "POST":
@@ -78,6 +78,6 @@ def editar_producto(request, codigo_producto):
 
 
 def borrar_producto(request, codigo_producto):
-    instancia = Producto.objects.get(codigo=codigo_producto)
+    instancia = Producto.objects.get(id=codigo_producto)
     instancia.delete()
     return redirect("/paginaPrincipal")
