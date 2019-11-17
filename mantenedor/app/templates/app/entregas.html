@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/boostrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
     <link rel="stylesheet" href="{% static 'css/fondo.css' %}">
     <link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
@@ -29,9 +29,9 @@
                 <h2 id="phoenix_store">Phoenix store</h2>
             </div>
             <nav class="nav">
-                <a class="nav-link" href="carcasas.html">Carcasas</a>
-                <a class="nav-link" href="llaveros.html">Llaveros</a>
-                <a class="nav-link" href="tazones.html">Tazones</a>
+                <a class="nav-link" href="carcasas">Carcasas</a>
+                <a class="nav-link" href="llaveros">Llaveros</a>
+                <a class="nav-link" href="tazones">Tazones</a>
                 <a class="nav-link" href="funkos.html">Funkos</a>
                 <a class="nav-link" href="peluches.html">Peluches</a>
                 <a class="nav-link" href="accesorios.html">Accesorios</a>
@@ -43,52 +43,80 @@
     <h1 class="row justify-content-center">¿Despacho a domicilio?</h1>
     <h2 class="row justify-content-center">Déjanos aquí tus datos</h2>
 
-    <table>
-        <tr>
-            <td>
-                <div class="regiones" id="form"></div>
-            </td>
-        </tr>
-    </table>
-    <form action="#" method="post" id="formulario1">
-        <table>
-            <tr>
-                <td>
-                    <p>Nombre Completo</p>
-                    <input type="text" name="txtNombre" id="txtNombre" placeholder="Ingrese nombre">
-                </td>
-            </tr>
+    <div class="container-form">
+        <form method="POST" id="formulario">
+            {% csrf_token %}
+            <table class="table table-hover" id="table-formulario">
+                <tr>
+                    <td><label>Region</label></td>
+                    <td>
+                        <select class="custom-select" id="country" name="region" required>
+                        <option value="" selected disabled>----- Seleccione una Region -----</option>
+                        <option value="Región Metropolitana de Santiago">Región Metropolitana de Santiago</option>
+                        <option value="Arica y Parinacota">Arica y Parinacota</option>
+                        <option value="Tarapacá">Tarapacá</option>
+                        <option value="Antofagasta">Antofagasta</option>
+                        <option value="Atacama">Atacama</option>
+                        <option value="Coquimbo">Coquimbo</option>
+                        <option value="Valparaíso">Valparaíso</option>
+                        <option value="Región del Libertador Gral. Bernardo O’Higgins">Región del Libertador Gral. Bernardo O’Higgins</option>
+                        <option value="Región del Maule">Región del Maule</option>
+                        <option value="Región de Ñuble">Región de Ñuble</option>
+                        <option value="Región del Biobío">Región del Biobío</option>
+                        <option value="Región de la Araucanía">Región de la Araucanía</option>
+                        <option value="Región de Los Ríos">Región de Los Ríos</option>
+                        <option value="Región de Los Lagos">Región de Los Lagos</option>
+                        <option value="Región Aysén del Gral. Carlos Ibáñez del Campo">Región Aysén del Gral. Carlos Ibáñez del Campo</option>
+                        <option value="Región de Magallanes y de la Antártica Chilena">Región de Magallanes y de la Antártica Chilena</option>
+                      </select></td>
+                </tr>
+                <tr>
+                    <td><label>Comuna</label></td>
+                    <td><select class="custom-select" id="location" name="comuna"></select></td>
+                </tr>
+                <tr>
+                    <td><label>Nombre Completo</label></td>
+                    <td><input class="form-control" type="text" name="nombre_cliente" id="txtNombre" required placeholder="Ingrese su Nombre Completo"></td>
+                </tr>
+                <tr>
+                    <td><label>Email</label></td>
+                    <td><input class="form-control" required type="email" name="email" id="txtemail" placeholder="Ingrese su Email"></td>
+                </tr>
+                <tr>
+                    <td><label>Telefono de Contacto</label></td>
+                    <td><input class="form-control" type="tel" name="telefono_contacto" id="txtTelefono" required pattern='[\+]\d{3}\d{8}' placeholder="Telefono Ej: +56944556677"></td>
+                </tr>
+                <tr>
+                    <td><label>Vivienda</label></td>
+                    <td><select required class="custom-select" id="vivienda" name="tipo_vivienda">
+                        <option value="" selected disabled>----- Seleccione un tipo de Vivienda -----</option>
+                        <option value="1">Casa con patio grande</option>
+                        <option value="2">Casa con patio pequeño</option>
+                        <option value="3">Casa sin patio</option>
+                        <option value="4">Departamento</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><label>Rut</label></td>
+                    <td><input class="form-control" type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese su RUT"></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de Nacimiento</label></td>
+                    <td><input class="form-control" required max="2001-12-31" type="date" name="fecha_nacimiento" id="txtDate"></td>
+                </tr>
+                <tr>
+                    <td>Direccion</td>
+                    <td><input class="form-control" type="text" name="direccion" id="txtDireccion" required placeholder="Ingrese su Direccion"></td>
+                </tr>
+            </table>
 
-            <tr>
-                <td>
-                    <p>Email</p>
-                    <input type="email" name="txtEmail" id="txtEmail" placeholder="Email">
-                </td>
-            </tr>
+            <button type="submit" name="btnEnviar" class="btn btn-primary">Guardar</button>
+            <button type="reset" class="btn btn-primary">Limpiar</button>
 
-            <tr>
-                <td>
-                    <p>Telefono de contacto</p>
-                    <input class="form-control" type="tel" name="txtTelefono" id="txtTelefono" required pattern='[\+]\d{3}\d{8}' placeholder="Telefono Ej: +56944556677">
-                </td>
-            </tr>
+        </form>
 
-            <tr>
-                <td>
-                    <p>Tipo de vivienda</p>
-                    <select required class="custom-select" id="vivienda" name="vivienda">
-                    <option value="" selected disabled>----- Seleccione un tipo de Vivienda -----</option>
-                    <option value="1">Casa con patio grande</option>
-                    <option value="2">Casa con patio pequeño</option>
-                    <option value="3">Casa sin patio</option>
-                    <option value="4">Departamento</option>
-                </select>
-                </td>
-            </tr>
-        </table>
-        <button type="submit" class="btn btn-dark">Enviar</button>
-        <button type="reset" class="btn btn-dark">Limpiar</button>
-    </form>
+
+    </div>
 
 
 

@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django import forms
 
 from .models import Producto
-from .forms import ProductoForm
+from .forms import ProductoForm, DatosClienteForm
 
 # Create your views here.
 
@@ -45,8 +45,17 @@ def contactenos(request):
 
 
 def entregas(request):
-    return render(request, 'app/entregas.html', {})
-
+    if request.method == 'POST':
+        form = DatosClienteForm(request.POST)
+        if form.is_valid():
+            model_instance = form.save(commit=False)
+            model_instance.save()
+            return redirect('/entregas')
+        else:
+            return render(request, 'app/entregas.html', {'form': form})
+    else:
+        form = DatosClienteForm()
+        return render(request,'app/entregas.html',{})
 
 def registrar_producto(request):
     if request.method == "POST":
@@ -81,3 +90,4 @@ def borrar_producto(request, codigo_producto):
     instancia = Producto.objects.get(id=codigo_producto)
     instancia.delete()
     return redirect("/paginaPrincipal")
+

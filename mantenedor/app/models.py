@@ -21,6 +21,9 @@ class DatosCliente(models.Model):
     email= models.CharField(max_length=100)
     telefono= models.CharField(max_length=13)
     tipo_vivienda= models.TextField()
+    rut= models.CharField(max_length=14)
+    fecha_nacimiento= models.DateField()
+    direccion= models.TextField()
 
     def __str__(self):
         return self.nombre_cliente
