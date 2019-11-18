@@ -91,3 +91,6 @@ def borrar_producto(request, codigo_producto):
     instancia.delete()
     return redirect("/paginaPrincipal")
 
+def listar_marca(request, producto_marca):
+    productos = Producto.objects.filter(marca=producto_marca)
+    return render(request, "app/listar_tipo.html", {'productos': productos})

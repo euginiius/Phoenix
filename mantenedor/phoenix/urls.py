@@ -22,6 +22,7 @@ urlpatterns = [
     path('', include('app.urls')),
     path('registrarProducto', include('app.urls')),
     path('listarProducto', include('app.urls')),
+    path('listarProducto/<str:producto_marca>', include('app.urls')),
     path('editarProducto/<int:codigo_producto>', include('app.urls')),
     path('borrarProducto/<int:codigo_producto>', include('app.urls')),
     path('paginaPrincipal', include('app.urls')),

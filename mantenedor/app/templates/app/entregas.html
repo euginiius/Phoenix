@@ -24,34 +24,45 @@
     <header class="cabecera">
         <div class="container">
             <div class="logo">
-                <a href="paginaPrincipal"><img id="fenix" src="{% static 'img/Fenix.png' %}" alt=""></a>
-                <a href="paginaPrincipal">
+                <a href="/paginaPrincipal"><img id="fenix" src="{% static 'img/Fenix.png' %}" alt=""></a>
+                <a href="/paginaPrincipal">
                     <h2 id="phoenix_store">Phoenix store</h2>
                 </a>
             </div>
             <nav class="nav">
-                <a class="nav-link" href="carcasas">Carcasas</a>
-                <a class="nav-link" href="llaveros">Llaveros</a>
-                <a class="nav-link" href="tazones">Tazones</a>
-                <a class="nav-link" href="funkos">Funkos</a>
-                <a class="nav-link" href="peluches">Peluches</a>
-                <a class="nav-link" href="accesorios">Accesorios</a>
-                <a class="nav-link" href="ropa">Ropa</a>
+                <a class="nav-link" href="/carcasas">Carcasas</a>
+                <a class="nav-link" href="/llaveros">Llaveros</a>
+                <a class="nav-link" href="/tazones">Tazones</a>
+                <a class="nav-link" href="/funkos">Funkos</a>
+                <a class="nav-link" href="/peluches">Peluches</a>
+                <a class="nav-link" href="/accesorios">Accesorios</a>
+                <a class="nav-link" href="/ropa">Ropa</a>
             </nav>
         </div>
         <div>
             {% if user.is_authenticated %} {% if request.user.is_superuser %}
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Administrar Productos
-                        </button>
+                                  Administrar Productos
+                                </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <a class="dropdown-item" href="registrarProducto">Agregar Producto</a>
-                    <a class="dropdown-item" href="listarProducto">Listar Productos</a>
+                    <a class="dropdown-item" href="listarProducto">Listar Todos</a>
+                    <a href="/listarProducto/Phoenix" class="dropdown-item">Listar por marca Phoenix</a>
+                    <a href="/listarProducto/Acme" class="dropdown-item">Listar por marca Acme</a>
                 </div>
             </div>
             {% else %}
-            <a class="btn btn-danger" href="/listarProducto">Listar Productos</a> {% endif %} {% else %}{% endif %}
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Listar productos
+                          </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <a class="dropdown-item" href="listarProducto">Listar Todos</a>
+                    <a href="/listarProducto/Phoenix" class="dropdown-item">Listar por marca Phoenix</a>
+                    <a href="/listarProducto/Acme" class="dropdown-item">Listar por marca Acme</a>
+                </div>
+            </div>{% endif %} {% else %}{% endif %}
         </div>
 
         <div>
@@ -76,29 +87,12 @@
                 <tr>
                     <td><label>Region</label></td>
                     <td>
-                        <select class="custom-select" id="country" name="region" required>
-                                <option value="" selected disabled>----- Seleccione una Region -----</option>
-                                <option value="Región Metropolitana de Santiago">Región Metropolitana de Santiago</option>
-                                <option value="Arica y Parinacota">Arica y Parinacota</option>
-                                <option value="Tarapacá">Tarapacá</option>
-                                <option value="Antofagasta">Antofagasta</option>
-                                <option value="Atacama">Atacama</option>
-                                <option value="Coquimbo">Coquimbo</option>
-                                <option value="Valparaíso">Valparaíso</option>
-                                <option value="Región del Libertador Gral. Bernardo O’Higgins">Región del Libertador Gral. Bernardo O’Higgins</option>
-                                <option value="Región del Maule">Región del Maule</option>
-                                <option value="Región de Ñuble">Región de Ñuble</option>
-                                <option value="Región del Biobío">Región del Biobío</option>
-                                <option value="Región de la Araucanía">Región de la Araucanía</option>
-                                <option value="Región de Los Ríos">Región de Los Ríos</option>
-                                <option value="Región de Los Lagos">Región de Los Lagos</option>
-                                <option value="Región Aysén del Gral. Carlos Ibáñez del Campo">Región Aysén del Gral. Carlos Ibáñez del Campo</option>
-                                <option value="Región de Magallanes y de la Antártica Chilena">Región de Magallanes y de la Antártica Chilena</option>
-                              </select></td>
+                        <select id="regiones" name="region"></select>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Comuna</label></td>
-                    <td><select class="custom-select" id="location" name="comuna"></select></td>
+                    <td><select id="comunas" name="comuna"></select></td>
                 </tr>
                 <tr>
                     <td><label class="bg-white">Nombre Completo</label></td>

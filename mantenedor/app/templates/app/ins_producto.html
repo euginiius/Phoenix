@@ -18,34 +18,45 @@
     <header class="cabecera">
         <div class="container">
             <div class="logo">
-                <a href="paginaPrincipal"><img id="fenix" src="{% static 'img/Fenix.png' %}" alt=""></a>
-                <a href="paginaPrincipal">
+                <a href="/paginaPrincipal"><img id="fenix" src="{% static 'img/Fenix.png' %}" alt=""></a>
+                <a href="/paginaPrincipal">
                     <h2 id="phoenix_store">Phoenix store</h2>
                 </a>
             </div>
             <nav class="nav">
-                <a class="nav-link" href="carcasas">Carcasas</a>
-                <a class="nav-link" href="llaveros">Llaveros</a>
-                <a class="nav-link" href="tazones">Tazones</a>
-                <a class="nav-link" href="funkos">Funkos</a>
-                <a class="nav-link" href="peluches">Peluches</a>
-                <a class="nav-link" href="accesorios">Accesorios</a>
-                <a class="nav-link" href="ropa">Ropa</a>
+                <a class="nav-link" href="/carcasas">Carcasas</a>
+                <a class="nav-link" href="/llaveros">Llaveros</a>
+                <a class="nav-link" href="/tazones">Tazones</a>
+                <a class="nav-link" href="/funkos">Funkos</a>
+                <a class="nav-link" href="/peluches">Peluches</a>
+                <a class="nav-link" href="/accesorios">Accesorios</a>
+                <a class="nav-link" href="/ropa">Ropa</a>
             </nav>
         </div>
         <div>
             {% if user.is_authenticated %} {% if request.user.is_superuser %}
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          Administrar Productos
-                                        </button>
+                                  Administrar Productos
+                                </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <a class="dropdown-item" href="registrarProducto">Agregar Producto</a>
-                    <a class="dropdown-item" href="listarProducto">Listar Productos</a>
+                    <a class="dropdown-item" href="listarProducto">Listar Todos</a>
+                    <a href="/listarProducto/Phoenix" class="dropdown-item">Listar por marca Phoenix</a>
+                    <a href="/listarProducto/Acme" class="dropdown-item">Listar por marca Acme</a>
                 </div>
             </div>
             {% else %}
-            <a class="btn btn-danger" href="/listarProducto">Listar Productos</a> {% endif %} {% else %}{% endif %}
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Listar productos
+                          </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <a class="dropdown-item" href="listarProducto">Listar Todos</a>
+                    <a href="/listarProducto/Phoenix" class="dropdown-item">Listar por marca Phoenix</a>
+                    <a href="/listarProducto/Acme" class="dropdown-item">Listar por marca Acme</a>
+                </div>
+            </div>{% endif %} {% else %}{% endif %}
         </div>
 
         <div>
@@ -57,15 +68,31 @@
             <a class="btn btn-danger" href="{% url 'login' %}">Login</a> {% endif %}
         </div>
     </header>
-    <h1>Registro de productos</h1>
-    <form method="POST">
-        {% csrf_token %} {{ form}}
+    <h1 class="row justify-content-center">Registro de productos</h1>
+    <div class="row justify-content-center">
+        <form method="POST">
+            {% csrf_token %}
+            <label>Codigo</label> {{ form.codigo }}
+            <br>
+            <label>Nombre</label> {{ form.nombre }}
+            <br>
+            <label>Precio</label> {{ form.precio }}
+            <br>
+            <label>Marca</label><select required class="custom-select" name="marca" id="marca"><option value="" selected disabled>-- seleccione una opcion --</option><option value="Acme">Acme</option><option value="Phoenix">Phoenix</option></select>
+            <br>
+            <label>Modelo</label> {{ form.modelo }}
+            <br>
+            <label>Descripcion</label> {{ form.descripcion }}
+            <br>
+            <label>Stock</label> {{ form.stock }}
 
-        <button type="submit">GRABAR</button>
-    </form>
+            <button type="submit">GRABAR</button>
+        </form>
+    </div>
+
     <footer id="fondo">
         <div id="bot_contenedor">
-            <a id="texto_bot2" href="entregas">
+            <a id="texto_bot2" href="/entregas">
                 <p>Entregas</p>
             </a>
         </div>
@@ -77,7 +104,7 @@
         <div id="derechos">
             <p>Todos los derechos reservados</p>
         </div>
-        <a class="row justify-content-center" href="paginaPrincipal">
+        <a class="row justify-content-center" href="/paginaPrincipal">
             <p class="bg-danger text-white">Página principal</p>
         </a>
 

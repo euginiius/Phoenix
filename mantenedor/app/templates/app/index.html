@@ -19,19 +19,19 @@
     <header class="cabecera">
         <div class="container">
             <div class="logo">
-                <a href="paginaPrincipal"><img id="fenix" src="{% static 'img/Fenix.png' %}" alt=""></a>
-                <a href="paginaPrincipal">
+                <a href="/paginaPrincipal"><img id="fenix" src="{% static 'img/Fenix.png' %}" alt=""></a>
+                <a href="/paginaPrincipal">
                     <h2 id="phoenix_store">Phoenix store</h2>
                 </a>
             </div>
             <nav class="nav">
-                <a class="nav-link" href="carcasas">Carcasas</a>
-                <a class="nav-link" href="llaveros">Llaveros</a>
-                <a class="nav-link" href="tazones">Tazones</a>
-                <a class="nav-link" href="funkos">Funkos</a>
-                <a class="nav-link" href="peluches">Peluches</a>
-                <a class="nav-link" href="accesorios">Accesorios</a>
-                <a class="nav-link" href="ropa">Ropa</a>
+                <a class="nav-link" href="/carcasas">Carcasas</a>
+                <a class="nav-link" href="/llaveros">Llaveros</a>
+                <a class="nav-link" href="/tazones">Tazones</a>
+                <a class="nav-link" href="/funkos">Funkos</a>
+                <a class="nav-link" href="/peluches">Peluches</a>
+                <a class="nav-link" href="/accesorios">Accesorios</a>
+                <a class="nav-link" href="/ropa">Ropa</a>
             </nav>
         </div>
         <div>
@@ -42,11 +42,22 @@
                         </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <a class="dropdown-item" href="registrarProducto">Agregar Producto</a>
-                    <a class="dropdown-item" href="listarProducto">Listar Productos</a>
+                    <a class="dropdown-item" href="listarProducto">Listar Todos</a>
+                    <a href="/listarProducto/Phoenix" class="dropdown-item">Listar por marca Phoenix</a>
+                    <a href="/listarProducto/Acme" class="dropdown-item">Listar por marca Acme</a>
                 </div>
             </div>
             {% else %}
-            <a class="btn btn-danger" href="/listarProducto">Listar Productos</a> {% endif %} {% else %}{% endif %}
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Listar productos
+                  </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <a class="dropdown-item" href="listarProducto">Listar Todos</a>
+                    <a href="/listarProducto/Phoenix" class="dropdown-item">Listar por marca Phoenix</a>
+                    <a href="/listarProducto/Acme" class="dropdown-item">Listar por marca Acme</a>
+                </div>
+            </div>{% endif %} {% else %}{% endif %}
         </div>
 
         <div>
@@ -126,7 +137,7 @@
     <footer id="fondo">
         <div id="bot_contenedor">
 
-            <a id="texto_bot2" href="entregas">
+            <a id="texto_bot2" href="/entregas">
                 <p>Entregas</p>
             </a>
         </div>

@@ -17,19 +17,19 @@
     <header class="cabecera">
         <div class="container">
             <div class="logo">
-                <a href="paginaPrincipal"><img id="fenix" src="{% static 'img/Fenix.png' %}" alt=""></a>
-                <a href="paginaPrincipal">
+                <a href="/paginaPrincipal"><img id="fenix" src="{% static 'img/Fenix.png' %}" alt=""></a>
+                <a href="/paginaPrincipal">
                     <h2 id="phoenix_store">Phoenix store</h2>
                 </a>
             </div>
             <nav class="nav">
-                <a class="nav-link" href="carcasas">Carcasas</a>
-                <a class="nav-link" href="llaveros">Llaveros</a>
-                <a class="nav-link" href="tazones">Tazones</a>
-                <a class="nav-link" href="funkos">Funkos</a>
-                <a class="nav-link" href="peluches">Peluches</a>
-                <a class="nav-link" href="accesorios">Accesorios</a>
-                <a class="nav-link" href="ropa">Ropa</a>
+                <a class="nav-link" href="/carcasas">Carcasas</a>
+                <a class="nav-link" href="/llaveros">Llaveros</a>
+                <a class="nav-link" href="/tazones">Tazones</a>
+                <a class="nav-link" href="/funkos">Funkos</a>
+                <a class="nav-link" href="/peluches">Peluches</a>
+                <a class="nav-link" href="/accesorios">Accesorios</a>
+                <a class="nav-link" href="/ropa">Ropa</a>
             </nav>
         </div>
         <div>
@@ -40,11 +40,22 @@
                                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <a class="dropdown-item" href="registrarProducto">Agregar Producto</a>
-                    <a class="dropdown-item" href="listarProducto">Listar Productos</a>
+                    <a class="dropdown-item" href="listarProducto">Listar Todos</a>
+                    <a href="/listarProducto/Phoenix" class="dropdown-item">Listar por marca Phoenix</a>
+                    <a href="/listarProducto/Acme" class="dropdown-item">Listar por marca Acme</a>
                 </div>
             </div>
             {% else %}
-            <a class="btn btn-danger" href="/listarProducto">Listar Productos</a> {% endif %} {% else %}{% endif %}
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Listar productos
+                          </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <a class="dropdown-item" href="listarProducto">Listar Todos</a>
+                    <a href="/listarProducto/Phoenix" class="dropdown-item">Listar por marca Phoenix</a>
+                    <a href="/listarProducto/Acme" class="dropdown-item">Listar por marca Acme</a>
+                </div>
+            </div>{% endif %} {% else %}{% endif %}
         </div>
 
         <div>
@@ -56,13 +67,39 @@
             <a class="btn btn-danger" href="{% url 'login' %}">Login</a> {% endif %}
         </div>
     </header>
-    <form method="POST">
-        {{ form }} {% csrf_token %}
-        <button type="submit">Editar</button>
-    </form>
+    <div class="row justify-content-center">
+        <form method="POST">
+            {% csrf_token %}
+            <label>Codigo</label> {{ form.codigo }}
+            <br>
+            <label>Nombre</label> {{ form.nombre }}
+            <br>
+            <label>Precio</label> {{ form.precio }}
+            <br>
+            <label>Marca</label>
+            <select name="marca" class="custom-select" required>
+                {% if form.marca.value == 'Phoenix' %}
+                    <option value="Acme">Acme</option>
+                    <option value="Phoenix" selected>Phoenix</option>
+                {% endif %}
+                {% if form.marca.value == 'Acme' %}
+                    <option value="Acme" selected>Acme</option>
+                    <option value="Phoenix">Phoenix</option>
+                {% endif %}
+            </select>
+            <br>
+            <label>Modelo</label> {{ form.modelo }}
+            <br>
+            <label>Descripcion</label> {{ form.descripcion }}
+            <br>
+            <label>Stock</label> {{ form.stock }}
+
+            <button type="submit">GRABAR</button>
+        </form>
+    </div>
     <footer id="fondo">
         <div id="bot_contenedor">
-            <a id="texto_bot2" href="entregas">
+            <a id="texto_bot2" href="/entregas">
                 <p>Entregas</p>
             </a>
         </div>
