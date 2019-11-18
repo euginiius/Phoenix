@@ -19,8 +19,10 @@
     <header class="cabecera">
         <div class="container">
             <div class="logo">
-                <img id="fenix" src="{% static 'img/Fenix.png' %}" alt="">
-                <h2 id="phoenix_store">Phoenix store</h2>
+                <a href="paginaPrincipal"><img id="fenix" src="{% static 'img/Fenix.png' %}" alt=""></a>
+                <a href="paginaPrincipal">
+                    <h2 id="phoenix_store">Phoenix store</h2>
+                </a>
             </div>
             <nav class="nav">
                 <a class="nav-link" href="carcasas">Carcasas</a>
@@ -39,20 +41,21 @@
                           Administrar Productos
                         </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <a class="dropdown-item" href="agregarProducto">Agregar Producto</a>
-                    <a class="dropdown-item" href="listarProductos">Listar Productos</a>
+                    <a class="dropdown-item" href="registrarProducto">Agregar Producto</a>
+                    <a class="dropdown-item" href="listarProducto">Listar Productos</a>
                 </div>
             </div>
             {% else %}
-            <a class="btn btn-outline-success my-2 my-sm-0" href="/listarProductos">Listar Productos</a> {% endif %} {% else %}{% endif %}
+            <a class="btn btn-danger" href="/listarProducto">Listar Productos</a> {% endif %} {% else %}{% endif %}
         </div>
 
         <div>
-            {% if user.is_authenticated %} Bienvenido {{ user.username }}!
-            <p><a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'logout' %}">Logout</a></p>
+            {% if user.is_authenticated %}
+            <p class="bg-primary text-white">Bienvenido {{ user.username }}!</p>
+            <p><a class="btn btn-danger" href="{% url 'logout' %}">Logout</a></p>
             {% else %}
-            <p>No estas logeado</p>
-            <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'login' %}">Login</a> {% endif %}
+            <p class="bg-primary text-white">No estas logeado</p>
+            <a class="btn btn-danger" href="{% url 'login' %}">Login</a> {% endif %}
         </div>
     </header>
     <div class="row justify-content-center">
@@ -122,10 +125,8 @@
     <br><br><br>
     <footer id="fondo">
         <div id="bot_contenedor">
-            <a id="texto_bot" href="contactenos.html">
-                <p>Contáctenos</p>
-            </a>
-            <a id="texto_bot2" href="entregas.html">
+
+            <a id="texto_bot2" href="entregas">
                 <p>Entregas</p>
             </a>
         </div>

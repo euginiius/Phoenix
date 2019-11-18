@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="{% static 'css/boostrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
     <link rel="stylesheet" href="{% static 'css/fondo.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 
     <title>Phoenix store</title>
 </head>
@@ -19,18 +21,43 @@
     <header class="cabecera">
         <div class="container">
             <div class="logo">
-                <img id="fenix" src="{% static 'img/Fenix.png' %}" alt="">
-                <h2 id="phoenix_store">Phoenix store</h2>
+                <a href="paginaPrincipal"><img id="fenix" src="{% static 'img/Fenix.png' %}" alt=""></a>
+                <a href="paginaPrincipal">
+                    <h2 id="phoenix_store">Phoenix store</h2>
+                </a>
             </div>
             <nav class="nav">
-                <a class="nav-link" href="carcasas.html">Carcasas</a>
-                <a class="nav-link" href="llaveros.html">Llaveros</a>
-                <a class="nav-link" href="tazones.html">Tazones</a>
-                <a class="nav-link" href="funkos.html">Funkos</a>
-                <a class="nav-link" href="peluches.html">Peluches</a>
-                <a class="nav-link" href="accesorios.html">Accesorios</a>
-                <a class="nav-link" href="ropa.html">Ropa</a>
+                <a class="nav-link" href="carcasas">Carcasas</a>
+                <a class="nav-link" href="llaveros">Llaveros</a>
+                <a class="nav-link" href="tazones">Tazones</a>
+                <a class="nav-link" href="funkos">Funkos</a>
+                <a class="nav-link" href="peluches">Peluches</a>
+                <a class="nav-link" href="accesorios">Accesorios</a>
+                <a class="nav-link" href="ropa">Ropa</a>
             </nav>
+        </div>
+        <div>
+            {% if user.is_authenticated %} {% if request.user.is_superuser %}
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Administrar Productos
+                        </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <a class="dropdown-item" href="registrarProducto">Agregar Producto</a>
+                    <a class="dropdown-item" href="listarProducto">Listar Productos</a>
+                </div>
+            </div>
+            {% else %}
+            <a class="btn btn-danger" href="/listarProducto">Listar Productos</a> {% endif %} {% else %}{% endif %}
+        </div>
+
+        <div>
+            {% if user.is_authenticated %}
+            <p class="bg-primary text-white">Bienvenido {{ user.username }}!</p>
+            <p><a class="btn btn-danger" href="{% url 'logout' %}">Logout</a></p>
+            {% else %}
+            <p class="bg-primary text-white">No estas logeado</p>
+            <a class="btn btn-danger" href="{% url 'login' %}">Login</a> {% endif %}
         </div>
     </header>
     <div id="ofertas">
@@ -52,10 +79,7 @@
     <br><br><br>
     <footer id="fondo">
         <div id="bot_contenedor">
-            <a id="texto_bot" href="contactenos.html">
-                <p>Contáctenos</p>
-            </a>
-            <a id="texto_bot2" href="entregas.html">
+            <a id="texto_bot2" href="entregas">
                 <p>Entregas</p>
             </a>
         </div>
@@ -67,7 +91,10 @@
         <div id="derechos">
             <p>Todos los derechos reservados</p>
         </div>
-        <a id="pagina-principal" class="row justify-content-center" href="index.html">Página principal</a>
+        <a class="row justify-content-center" href="paginaPrincipal">
+            <p class="bg-danger text-white">Página principal</p>
+        </a>
+
     </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

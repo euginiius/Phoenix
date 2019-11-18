@@ -392,6 +392,7 @@ jQuery(function($) {
     });
 });
 
+
 $("#formulario1").validate({
         rules: {
             "txtNombre": {

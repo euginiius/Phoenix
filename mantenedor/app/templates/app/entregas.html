@@ -16,7 +16,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
     <!--css-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <title>Phoenix store - Entregas</title>
 </head>
 
@@ -24,23 +24,50 @@
     <header class="cabecera">
         <div class="container">
             <div class="logo">
-                <img id="fenix" src="{% static 'img/Fenix.png' %}" alt="">
-                <h2 id="phoenix_store">Phoenix store</h2>
+                <a href="paginaPrincipal"><img id="fenix" src="{% static 'img/Fenix.png' %}" alt=""></a>
+                <a href="paginaPrincipal">
+                    <h2 id="phoenix_store">Phoenix store</h2>
+                </a>
             </div>
             <nav class="nav">
                 <a class="nav-link" href="carcasas">Carcasas</a>
                 <a class="nav-link" href="llaveros">Llaveros</a>
                 <a class="nav-link" href="tazones">Tazones</a>
-                <a class="nav-link" href="funkos.html">Funkos</a>
-                <a class="nav-link" href="peluches.html">Peluches</a>
-                <a class="nav-link" href="accesorios.html">Accesorios</a>
-                <a class="nav-link" href="ropa.html">Ropa</a>
+                <a class="nav-link" href="funkos">Funkos</a>
+                <a class="nav-link" href="peluches">Peluches</a>
+                <a class="nav-link" href="accesorios">Accesorios</a>
+                <a class="nav-link" href="ropa">Ropa</a>
             </nav>
         </div>
-    </header>
+        <div>
+            {% if user.is_authenticated %} {% if request.user.is_superuser %}
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Administrar Productos
+                        </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <a class="dropdown-item" href="registrarProducto">Agregar Producto</a>
+                    <a class="dropdown-item" href="listarProducto">Listar Productos</a>
+                </div>
+            </div>
+            {% else %}
+            <a class="btn btn-danger" href="/listarProducto">Listar Productos</a> {% endif %} {% else %}{% endif %}
+        </div>
 
-    <h1 class="row justify-content-center">¿Despacho a domicilio?</h1>
-    <h2 class="row justify-content-center">Déjanos aquí tus datos</h2>
+        <div>
+            {% if user.is_authenticated %}
+            <p class="bg-primary text-white">Bienvenido {{ user.username }}!</p>
+            <p><a class="btn btn-danger" href="{% url 'logout' %}">Logout</a></p>
+            {% else %}
+            <p class="bg-primary text-white">No estas logeado</p>
+            <a class="btn btn-danger" href="{% url 'login' %}">Login</a> {% endif %}
+        </div>
+    </header>
+    <div class="bg-white">
+        <h1 class="row justify-content-center">¿Despacho a domicilio?</h1>
+        <h2 class="row justify-content-center">Déjanos aquí tus datos</h2>
+    </div>
+
 
     <div class="container-form">
         <form method="POST" id="formulario">
@@ -50,43 +77,43 @@
                     <td><label>Region</label></td>
                     <td>
                         <select class="custom-select" id="country" name="region" required>
-                        <option value="" selected disabled>----- Seleccione una Region -----</option>
-                        <option value="Región Metropolitana de Santiago">Región Metropolitana de Santiago</option>
-                        <option value="Arica y Parinacota">Arica y Parinacota</option>
-                        <option value="Tarapacá">Tarapacá</option>
-                        <option value="Antofagasta">Antofagasta</option>
-                        <option value="Atacama">Atacama</option>
-                        <option value="Coquimbo">Coquimbo</option>
-                        <option value="Valparaíso">Valparaíso</option>
-                        <option value="Región del Libertador Gral. Bernardo O’Higgins">Región del Libertador Gral. Bernardo O’Higgins</option>
-                        <option value="Región del Maule">Región del Maule</option>
-                        <option value="Región de Ñuble">Región de Ñuble</option>
-                        <option value="Región del Biobío">Región del Biobío</option>
-                        <option value="Región de la Araucanía">Región de la Araucanía</option>
-                        <option value="Región de Los Ríos">Región de Los Ríos</option>
-                        <option value="Región de Los Lagos">Región de Los Lagos</option>
-                        <option value="Región Aysén del Gral. Carlos Ibáñez del Campo">Región Aysén del Gral. Carlos Ibáñez del Campo</option>
-                        <option value="Región de Magallanes y de la Antártica Chilena">Región de Magallanes y de la Antártica Chilena</option>
-                      </select></td>
+                                <option value="" selected disabled>----- Seleccione una Region -----</option>
+                                <option value="Región Metropolitana de Santiago">Región Metropolitana de Santiago</option>
+                                <option value="Arica y Parinacota">Arica y Parinacota</option>
+                                <option value="Tarapacá">Tarapacá</option>
+                                <option value="Antofagasta">Antofagasta</option>
+                                <option value="Atacama">Atacama</option>
+                                <option value="Coquimbo">Coquimbo</option>
+                                <option value="Valparaíso">Valparaíso</option>
+                                <option value="Región del Libertador Gral. Bernardo O’Higgins">Región del Libertador Gral. Bernardo O’Higgins</option>
+                                <option value="Región del Maule">Región del Maule</option>
+                                <option value="Región de Ñuble">Región de Ñuble</option>
+                                <option value="Región del Biobío">Región del Biobío</option>
+                                <option value="Región de la Araucanía">Región de la Araucanía</option>
+                                <option value="Región de Los Ríos">Región de Los Ríos</option>
+                                <option value="Región de Los Lagos">Región de Los Lagos</option>
+                                <option value="Región Aysén del Gral. Carlos Ibáñez del Campo">Región Aysén del Gral. Carlos Ibáñez del Campo</option>
+                                <option value="Región de Magallanes y de la Antártica Chilena">Región de Magallanes y de la Antártica Chilena</option>
+                              </select></td>
                 </tr>
                 <tr>
                     <td><label>Comuna</label></td>
                     <td><select class="custom-select" id="location" name="comuna"></select></td>
                 </tr>
                 <tr>
-                    <td><label>Nombre Completo</label></td>
+                    <td><label class="bg-white">Nombre Completo</label></td>
                     <td><input class="form-control" type="text" name="nombre_cliente" id="txtNombre" required placeholder="Ingrese su Nombre Completo"></td>
                 </tr>
                 <tr>
-                    <td><label>Email</label></td>
+                    <td><label class="bg-white">Email</label></td>
                     <td><input class="form-control" required type="email" name="email" id="txtemail" placeholder="Ingrese su Email"></td>
                 </tr>
                 <tr>
-                    <td><label>Telefono de Contacto</label></td>
+                    <td><label class="bg-white">Telefono de Contacto</label></td>
                     <td><input class="form-control" type="tel" name="telefono_contacto" id="txtTelefono" required pattern='[\+]\d{3}\d{8}' placeholder="Telefono Ej: +56944556677"></td>
                 </tr>
                 <tr>
-                    <td><label>Vivienda</label></td>
+                    <td><label class="bg-white">Vivienda</label></td>
                     <td><select required class="custom-select" id="vivienda" name="tipo_vivienda">
                         <option value="" selected disabled>----- Seleccione un tipo de Vivienda -----</option>
                         <option value="1">Casa con patio grande</option>
@@ -96,21 +123,23 @@
                     </select></td>
                 </tr>
                 <tr>
-                    <td><label>Rut</label></td>
+                    <td><label class="bg-white">Rut</label></td>
                     <td><input class="form-control" type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese su RUT"></td>
                 </tr>
                 <tr>
-                    <td><label>Fecha de Nacimiento</label></td>
+                    <td><label class="bg-white">Fecha de Nacimiento</label></td>
                     <td><input class="form-control" required max="2001-12-31" type="date" name="fecha_nacimiento" id="txtDate"></td>
                 </tr>
                 <tr>
-                    <td>Direccion</td>
+                    <td><label class="bg-white">Direccion</label></td>
                     <td><input class="form-control" type="text" name="direccion" id="txtDireccion" required placeholder="Ingrese su Direccion"></td>
                 </tr>
             </table>
 
-            <button type="submit" name="btnEnviar" class="btn btn-primary">Guardar</button>
-            <button type="reset" class="btn btn-primary">Limpiar</button>
+            <div class="row justify-content-center">
+                <button type="submit" name="btnEnviar" class="btn btn-danger">Guardar</button>
+                <button type="reset" class="btn btn-danger">Limpiar</button>
+            </div>
 
         </form>
 
@@ -118,10 +147,12 @@
     </div>
 
 
+    <br>
+    <a class="row justify-content-center" href="paginaPrincipal">
+        <p class="bg-danger text-white">Página principal</p>
+    </a>
 
-    <a class="row justify-content-center" href="index">Página principal</a>
-
-    <script src="{% static 'js/validador.js' %}"></script>
+    <script src="../../../static/js/validador.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

@@ -8,7 +8,7 @@
 }
 
 #phoenix_store {
-    color: white;
+    color: transparent;
 }
 
 .logo {
@@ -129,4 +129,8 @@
 
 body {
     background: url(../img/Fondo.jpg);
+}
+
+#entregasBotones {
+    justify-content: space-between;
 }

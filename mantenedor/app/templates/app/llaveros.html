@@ -1,22 +1,106 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/boostrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
     <link rel="stylesheet" href="{% static 'css/fondo.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Llaveros</title>
+
+    <title>Phoenix store</title>
 </head>
 
-<body>
-    <h1>
-        Llaveros
-    </h1>
+<body class="pagina">
+    <header class="cabecera">
+        <div class="container">
+            <div class="logo">
+                <a href="paginaPrincipal"><img id="fenix" src="{% static 'img/Fenix.png' %}" alt=""></a>
+                <a href="paginaPrincipal">
+                    <h2 id="phoenix_store">Phoenix store</h2>
+                </a>
+            </div>
+            <nav class="nav">
+                <a class="nav-link" href="carcasas">Carcasas</a>
+                <a class="nav-link" href="llaveros">Llaveros</a>
+                <a class="nav-link" href="tazones">Tazones</a>
+                <a class="nav-link" href="funkos">Funkos</a>
+                <a class="nav-link" href="peluches">Peluches</a>
+                <a class="nav-link" href="accesorios">Accesorios</a>
+                <a class="nav-link" href="ropa">Ropa</a>
+            </nav>
+        </div>
+        <div>
+            {% if user.is_authenticated %} {% if request.user.is_superuser %}
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Administrar Productos
+                        </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <a class="dropdown-item" href="registrarProducto">Agregar Producto</a>
+                    <a class="dropdown-item" href="listarProducto">Listar Productos</a>
+                </div>
+            </div>
+            {% else %}
+            <a class="btn btn-danger" href="/listarProducto">Listar Productos</a> {% endif %} {% else %}{% endif %}
+        </div>
+
+        <div>
+            {% if user.is_authenticated %}
+            <p class="bg-primary text-white">Bienvenido {{ user.username }}!</p>
+            <p><a class="btn btn-danger" href="{% url 'logout' %}">Logout</a></p>
+            {% else %}
+            <p class="bg-primary text-white">No estas logeado</p>
+            <a class="btn btn-danger" href="{% url 'login' %}">Login</a> {% endif %}
+        </div>
+    </header>
+    <div id="ofertas">
+
+        <div>
+            <img class="img_ofertas" src="{% static 'img/Carcasa-huawei-p20-pro.jpg' %}" alt="">
+            <p class="titulo"> Carcasa huawei p20 pro<br> $2.990</p>
+        </div>
+        <div>
+            <img class="img_ofertas" src="{% static 'img/Carcasa-iphone-6-plus-friends.jpg' %}" alt="">
+            <p class="titulo"> Carcasa iphone 6 <br> $3.990</p>
+        </div>
+        <div>
+            <img class="img_ofertas" src="{% static 'img/Carcasa-iphone-6-plus-riverdale.jpg' %}" alt="">
+            <p class="titulo"> Carcasa iphone 6 <br> $3.990 </p>
+
+        </div>
+    </div>
+    <br><br><br>
+    <footer id="fondo">
+        <div id="bot_contenedor">
+            <a id="texto_bot2" href="entregas">
+                <p>Entregas</p>
+            </a>
+        </div>
+        <div id="rss">
+            <img id="rss_img" src="{% static 'img/Logo-face.png' %}" alt="">
+            <img id="rss_img2" src="{% static 'img/Logo-insta.png' %}" alt="">
+            <img id="rss_img3" src="{% static 'img/Logo-wsp.png' %}" alt="">
+        </div>
+        <div id="derechos">
+            <p>Todos los derechos reservados</p>
+        </div>
+        <a class="row justify-content-center" href="paginaPrincipal">
+            <p class="bg-danger text-white">Página principal</p>
+        </a>
+
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>
