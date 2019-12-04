@@ -6,7 +6,17 @@ from django import forms
 from .models import Producto
 from .forms import ProductoForm, DatosClienteForm
 
+from .serializers import ProductoSerializer
+from rest_framework import generics
 # Create your views here.
+
+class API_objects(generics.ListCreateAPIView):
+        queryset = Producto.objects.all()
+        serializer_class= ProductoSerializer
+
+class API_objects_details(generics.RetrieveUpdateDestroyAPIView):
+        queryset = Producto.objects.all()
+        serializer_class= ProductoSerializer
 
 def pagina_principal(request):
     return render(request, 'app/index.html', {})
