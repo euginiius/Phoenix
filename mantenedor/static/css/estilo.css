@@ -8,7 +8,7 @@
 }
 
 #phoenix_store {
-    color: transparent;
+    color: white;
 }
 
 .logo {
@@ -125,10 +125,6 @@
 
 #pagina-principal {
     color: orange;
-}
-
-body {
-    background: url(../img/Fondo.jpg);
 }
 
 #entregasBotones {

@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.core.files import File
+from urllib.request import urlopen
+from tempfile import NamedTemporaryFile
 # Create your models here.
 
 class Producto(models.Model):
@@ -10,6 +13,7 @@ class Producto(models.Model):
     modelo= models.CharField(max_length=20)
     descripcion= models.CharField(max_length=250)
     stock= models.IntegerField()
+    imagen = models.FileField(upload_to='static/img')
 
     def __str__(self):
         return self.nombre

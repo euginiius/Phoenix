@@ -70,7 +70,7 @@
     </header>
     <h1 class="row justify-content-center">Registro de productos</h1>
     <div class="row justify-content-center">
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <label>Codigo</label> {{ form.codigo }}
             <br>
@@ -85,7 +85,8 @@
             <label>Descripcion</label> {{ form.descripcion }}
             <br>
             <label>Stock</label> {{ form.stock }}
-
+            <br>
+            <label>Imagen</label><input type="file" name="imagen" required>
             <button type="submit">GRABAR</button>
         </form>
     </div>

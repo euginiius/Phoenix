@@ -69,7 +69,7 @@ def entregas(request):
 
 def registrar_producto(request):
     if request.method == "POST":
-        form = ProductoForm(request.POST)
+        form = ProductoForm(request.POST, request.FILES)
         if(form.is_valid):
             model_instance = form.save(commit=False)
             model_instance.save()

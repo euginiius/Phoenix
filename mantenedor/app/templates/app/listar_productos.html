@@ -72,7 +72,7 @@
     <ul>
         {% for p in productos %}
         <li>
-            {{p.nombre}} $ {{p.precio}} , {{p.marca}} , {{p.modelo}} , {{p.descripcion}} , {{p.stock}}
+            {{p.nombre}} $ {{p.precio}} , {{p.marca}} , {{p.modelo}} , {{p.descripcion}} , {{p.stock}},<img src="{{p.imagen}}">
             <a href="/editarProducto/{{p.id}}">EDITAR</a>
             <a href="/borrarProducto/{{p.id}}" onclick="return confirm('¿Seguro de borrar?');">
             BORRAR</a>
